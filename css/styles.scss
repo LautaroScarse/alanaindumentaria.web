@@ -68,269 +68,302 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-.video-container{
-    height:100% ;
-    width:100%;
-    overflow:hidden;
-    position:absolute;
 
-    video{
-      //toda la pantalla
-      min-width:100%;
-      min-height:100%;
+.video-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: 0;
 
-      width: auto;
-      height: auto;
-      //centrar video
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%,-50%);
-      transform: translate(-50%,-50%);
+  video {
+    min-width: 100%;
+    min-height: 100%;
 
-    }
+    width: auto;
+    height: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
-//modificar color y giladas al menu
-.navigation{
-  li{
-    @extend.medium;
-    padding: 5px 10 px;
+
+// navegación
+.navigation {
+  li {
+    @extend .medium;
+    padding: 5px 10px; // 🔥 FIX espacio mal
     transition: all 0.5s;
-    &:hover{
-      background-color: rgba(0, 0, 0,0.5);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
     }
-    a{
-      color:black;
-      cursor:pointer;
-      &:hover{
-        text-decoration:none ;
+
+    a {
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
       }
     }
   }
 }
 
-#description{
-  ul{
-    margin:0px;
-  }
-  &.absolute{
-    bottom:0px;
-  }
-  &.fixed{
-    top:0px;
-  }
-
+#description {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  height: auto;
+  min-height: 20px;
+  color: white;
 }
-.clothes{
-  height:300px;
+#home .box{
+  padding-top: 40px;
+}
+.clothes {
+  height: 300px;
   background-size: cover;
   background-position: center;
-  padding:0px;
+  padding: 0;
   overflow: hidden;
   position: relative;
 
-  &:hover{
-    .screen{
-      top:0%;
+  &:hover {
+    .screen {
+      top: 0%;
     }
   }
-  .screen{
-    top:-100%;
-    position: absolute; 
-    background-color:rgba(0, 0, 0, 0.8);
-    height:100%;
-    width:100%;
+
+  .screen {
+    top: -100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    width: 100%;
     transition: top 0.8s;
   }
 }
-#menu-title{
-  width: 300px;
-  z-index:5;
-  top:50%;
-  left:calc(50% - 150px);
-  top:calc(50% - 2.5em);
+#menu-link{
+  z-index: 1000;
 }
-#gallery{
-  width:100%;
-  overflow-x:hidden ;
-  .inner{
-    white-space:nowrap;
-    position: relative;
-    left:0%;
-    transition:left 1.5s;
+#menu-title {
+ position: sticky;
+  top: 0;
+  z-index: 10;
+}
+#gallery {
+  padding: 20px;
+
+  .inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
   }
-  .image{
-    display:inline-block;
-    margin-right:-4px;
-    height:400px;
-    width:100%;
-    background-size: contain;
+
+  .image {
+    height: 200px;
+    background-size: cover;
     background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s;
   }
-}
-.container{
-  .card{
-    margin-top: -200px;
-    padding:2em;
 
-    }
+  .image:hover {
+    transform: scale(1.05);
   }
-.path-step {
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background:#a2a2a2;
-  display: inline-block;
-  margin-top: 2em;
-  opacity:0.4;
-  transition: all 0.4s ;
-  cursor: pointer;
-  &:hover{
-    box-shadow: 0px 0px 5px rgba(250,250,250,0.8);
-  }
-  &.active{
-    opacity:1;
-    background-color:white ;
-    box-shadow: 0px 0px 5px rgba(250,250,250,0.8);
-
-}}
-.step-form{
-  .step{
-    max-height: 0px;
-    overflow: hidden;
-    transition: all 1s;
-    padding: 1em 0.5em;
-    margin: 0px;
-    &.active{
-      max-height: 150px;
-    }
-    input, textarea{
-      font-size:2em;
-      padding:0.5em;
-      border:none;
-      outline:none;
-      border-bottom:solid 1px #eee;
-      background-color:transparent;
-      width:100%;
-      color: white;
-}
-  }
-}
-#contact{
-  margin-top: -200px;
-}
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-.card{
-  box-shadow: 0px 0px 10px rgba(0,0,0.5);
-  margin-bottom:400px;
 }
 
-.black{
-  background-color: #222;
+.container {
+  .card {
+    margin-top: 50px;
+    padding: 2em;
+  }
 }
-.white{
-  background-color: white;
-}
-.white-text{
-    color:white;
-    text-align:center;
-}
-.black-text{
-  color:black;
-}
-.dancing-script{
-  font-family: "Dancing Script", cursive;
-}
-.slim{
-  font-weight:200;
-}
-.title{
-  font-size: 4em;
-}
-.subtitle{
-  font-size:2.5em;
-}
-.medium{
-  font-size: 1.5em;
-}
-.large-padding{
-  padding: 10px 15px;
-}
-.absolute{
-  position: absolute;
-}
-.fixed{
+#lightbox {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    max-width: 80vw;
+    max-height: 80vh;
+  }
+
+  span {
+    color: white;
+    font-size: 3em;
+    cursor: pointer;
+    margin: 0 20px;
+  }
 }
-.relative{
-  position:relative;
+
+.hidden {
+  display: none !important;
 }
-.bottom{
-  bottom: 0px;
-}
-.top{
-  top: 3em;
-}
-.right{
-  right:5em ;
-}
-.up{
-  z-index:2;
-  position: relative;
-}
-.full-height{
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   height: 100%;
 }
-.full-width{
+
+.path-step {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #777;
+  opacity: 0.5;
+}
+
+.path-step.active {
+  background: white;
+  opacity: 1;
+  transform: scale(1.2);
+}
+#contact .box {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#location {
+  height: 500px;
   width: 100%;
 }
-.row{
-  margin: 0;
+
+#map {
+  width: 100%;
+  height: 100%;
 }
-.no-margin{
-  margin:0px;
-}
-.hidden{
+
+#menu-opener {
   display: none;
 }
 
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); // 🔥 FIX rgba mal
+  margin-bottom: 400px;
+}
+
+.black {
+  background-color: #222;
+}
+
+.white {
+  background-color: white;
+}
+
+.white-text {
+  color: white;
+  text-align: center;
+}
+
+.black-text {
+  color: black;
+}
+
+.dancing-script {
+  font-family: "Dancing Script", cursive;
+}
+
+.slim {
+  font-weight: 200;
+}
+
+.title {
+  font-size: 4em;
+}
+
+.subtitle {
+  font-size: 2.5em;
+}
+
+.medium {
+  font-size: 1.5em;
+}
+
+.large-padding {
+  padding: 10px 15px;
+}
+
+.absolute {
   position: absolute;
-  white-space: nowrap;
-  width: 1px;
-
 }
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
-  height: auto;
+
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.top {
+  top: 3em;
+}
+
+.right {
+  right: 5em;
+}
+
+.up {
+  z-index: 2;
+  position: relative;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.row {
   margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
 }
 
-.invisible {
-  visibility: hidden;
+.no-margin {
+  margin: 0;
 }
 
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
-}
-
-.clearfix::after {
-  clear: both;
+.hidden {
+  display: none;
 }
 
 /* ==========================================================================
@@ -338,11 +371,69 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+@media only screen and (max-height: 600px){
+  #menu-title,.medium, .navigation li{
+    margin-top:-15%;}
 }
+@media only screen and (max-width: 960px) {
 
+  #menu-opener {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 2em;
+    color:red;
+    cursor: pointer;
+  }
+  .path-step {
+    display: inline-block;
+    margin-right:1em;
+  }
+  #navigation ul {
+    display: none !important;
+  }
+
+  #responsive-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: #222;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s;
+
+    li {
+      display: block;
+      margin: 20px 0;
+
+      a {
+        color: white;
+        font-size: 2em;
+      }
+    }
+  }
+
+  #responsive-nav.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+@media only screen and (max-width: 500px){
+  #responsive-nav{
+    top: 95px;
+  }
+};
 @media print,
   (-webkit-min-device-pixel-ratio: 1.25),
   (min-resolution: 1.25dppx),

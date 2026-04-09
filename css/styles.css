@@ -68,6 +68,7 @@ textarea {
   width: 100%;
   overflow: hidden;
   position: absolute;
+  z-index: 0;
 }
 .video-container video {
   min-width: 100%;
@@ -78,11 +79,11 @@ textarea {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .navigation li {
-  padding: 5px 10 px;
+  padding: 5px 10px;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -90,28 +91,34 @@ textarea {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .navigation li a {
-  color: black;
+  color: white;
   cursor: pointer;
 }
 .navigation li a:hover {
   text-decoration: none;
 }
 
-#description ul {
-  margin: 0px;
+#description {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  height: auto;
+  min-height: 20px;
+  color: white;
 }
-#description.absolute {
-  bottom: 0px;
-}
-#description.fixed {
-  top: 0px;
+
+#home .box {
+  padding-top: 40px;
 }
 
 .clothes {
   height: 300px;
   background-size: cover;
   background-position: center;
-  padding: 0px;
+  padding: 0;
   overflow: hidden;
   position: relative;
 }
@@ -128,94 +135,151 @@ textarea {
   transition: top 0.8s;
 }
 
+#menu-link {
+  z-index: 1000;
+}
+
 #menu-title {
-  width: 300px;
-  z-index: 5;
-  top: 50%;
-  left: calc(50% - 150px);
-  top: calc(50% - 2.5em);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 #gallery {
-  width: 100%;
-  overflow-x: hidden;
+  padding: 20px;
 }
 #gallery .inner {
-  white-space: nowrap;
-  position: relative;
-  left: 0%;
-  -webkit-transition: left 1.5s;
-  transition: left 1.5s;
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
 }
 #gallery .image {
-  display: inline-block;
-  margin-right: -4px;
-  height: 400px;
-  width: 100%;
-  background-size: contain;
+  height: 200px;
+  background-size: cover;
   background-position: center;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+#gallery .image:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .container .card {
-  margin-top: -200px;
+  margin-top: 50px;
   padding: 2em;
 }
 
-.path-step {
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background: #a2a2a2;
-  display: inline-block;
-  margin-top: 2em;
-  opacity: 0.4;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  cursor: pointer;
-}
-.path-step:hover {
-  -webkit-box-shadow: 0px 0px 5px rgba(250, 250, 250, 0.8);
-          box-shadow: 0px 0px 5px rgba(250, 250, 250, 0.8);
-}
-.path-step.active {
-  opacity: 1;
-  background-color: white;
-  -webkit-box-shadow: 0px 0px 5px rgba(250, 250, 250, 0.8);
-          box-shadow: 0px 0px 5px rgba(250, 250, 250, 0.8);
-}
-
-.step-form .step {
-  max-height: 0px;
-  overflow: hidden;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-  padding: 1em 0.5em;
-  margin: 0px;
-}
-.step-form .step.active {
-  max-height: 150px;
-}
-.step-form .step input, .step-form .step textarea {
-  font-size: 2em;
-  padding: 0.5em;
-  border: none;
-  outline: none;
-  border-bottom: solid 1px #eee;
-  background-color: transparent;
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2000;
+}
+#lightbox .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+#lightbox .content {
+  position: relative;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#lightbox img {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+#lightbox span {
   color: white;
+  font-size: 3em;
+  cursor: pointer;
+  margin: 0 20px;
 }
 
-#contact {
-  margin-top: -200px;
+.hidden {
+  display: none !important;
+}
+
+.steps-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.path-step {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #777;
+  opacity: 0.5;
+}
+
+.path-step.active {
+  background: white;
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#contact .box {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#location {
+  height: 500px;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+#menu-opener {
+  display: none;
 }
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 .card {
-  -webkit-box-shadow: 0px 0px 10px rgb(0, 0, 0.5);
-          box-shadow: 0px 0px 10px rgb(0, 0, 0.5);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 400px;
 }
 
@@ -273,7 +337,7 @@ textarea {
 }
 
 .bottom {
-  bottom: 0px;
+  bottom: 0;
 }
 
 .top {
@@ -290,7 +354,7 @@ textarea {
 }
 
 .full-height {
-  height: 100%;
+  min-height: 100vh;
 }
 
 .full-width {
@@ -302,48 +366,11 @@ textarea {
 }
 
 .no-margin {
-  margin: 0px;
+  margin: 0;
 }
 
 .hidden {
   display: none;
-}
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
-}
-
-.clearfix::after {
-  clear: both;
 }
 
 /* ==========================================================================
@@ -351,8 +378,71 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+@media only screen and (max-height: 600px) {
+  #menu-title, .medium, .navigation li {
+    margin-top: -15%;
+  }
+}
+@media only screen and (max-width: 960px) {
+  #menu-opener {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 2em;
+    color: red;
+    cursor: pointer;
+  }
+  .path-step {
+    display: inline-block;
+    margin-right: 1em;
+  }
+  #navigation ul {
+    display: none !important;
+  }
+  #responsive-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  #responsive-nav li {
+    display: block;
+    margin: 20px 0;
+  }
+  #responsive-nav li a {
+    color: white;
+    font-size: 2em;
+  }
+  #responsive-nav.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #responsive-nav {
+    top: 95px;
+  }
 }
 @media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
